@@ -1,6 +1,6 @@
 {
   "name": "sveltejs-markdoc",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Markdoc renderer for Svelte",
   "packageManager": "pnpm@7.4.0",
   "keywords": [
@@ -8,6 +8,16 @@
     "markdoc",
     "markdown"
   ],
+  "license": "MIT",
+  "author": {
+    "name": "YuCheng Kuo",
+    "email": "hey@yuchengkuo.com",
+    "url": "https://yuchengkuo.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yuchengkuo/sveltejs-markdoc"
+  },
   "scripts": {
     "dev": "svelte-kit dev",
     "build": "svelte-kit build",
