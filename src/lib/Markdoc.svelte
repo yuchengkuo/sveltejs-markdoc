@@ -16,15 +16,27 @@
     {#each content as node}
       <svelte:self content={node} {components} />
     {/each}
-  {/if}
-
-  {@const { name, attributes = {}, children = [] } = content}
-  {#if components[name]}
-    {@const component = components[name]}
-    {#if children.length === 0}
-      <svelte:component this={component} {...attributes} />
+  {:else}
+    {@const { name, attributes = {}, children = [] } = content}
+    {#if components[name]}
+      {@const component = components[name]}
+      {#if children.length === 0}
+        <svelte:component this={component} {...attributes} />
+      {:else}
+        <svelte:component this={component} {...attributes}>
+          {#each children as child}
+            {#if typeof child === 'string'}
+              {child}
+            {:else}
+              <svelte:self content={child} {components} />
+            {/if}
+          {/each}
+        </svelte:component>
+      {/if}
+    {:else if children.length === 0}
+      <svelte:element this={name} {...attributes} />
     {:else}
-      <svelte:component this={component} {...attributes}>
+      <svelte:element this={name} {...attributes}>
         {#each children as child}
           {#if typeof child === 'string'}
             {child}
@@ -32,19 +44,7 @@
             <svelte:self content={child} {components} />
           {/if}
         {/each}
-      </svelte:component>
+      </svelte:element>
     {/if}
-  {:else if children.length === 0}
-    <svelte:element this={name} {...attributes} />
-  {:else}
-    <svelte:element this={name} {...attributes}>
-      {#each children as child}
-        {#if typeof child === 'string'}
-          {child}
-        {:else}
-          <svelte:self content={child} {components} />
-        {/if}
-      {/each}
-    </svelte:element>
   {/if}
 {/if}

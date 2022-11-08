@@ -1,6 +1,6 @@
 {
   "name": "sveltejs-markdoc",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Markdoc renderer for Svelte",
   "packageManager": "pnpm@7.4.0",
   "keywords": [
