@@ -1,16 +1,16 @@
 <script lang="ts">
-  import Markdoc from '$lib/Markdoc.svelte'
-  import markdoc from '@markdoc/markdoc'
-  import { config } from '../markdoc.config'
+  import { parse, transform } from '@markdoc/markdoc'
   import Callout from '$components/Callout.svelte'
   import Counter from '$components/Counter.svelte'
+  import Markdoc from '$lib/Markdoc.svelte'
+  import { config } from '../markdoc/markdoc.config'
 
   const source = `
   # {% $title %}
 
   Markdoc is a Markdown-based syntax and toolchain for creating custom documentation sites. Stripe created Markdoc to power [our public docs](http://stripe.com/docs).
 
-  {% callout type="check" %}
+  {% callout type="note" %}
   Markdoc is open-source—check out its [source](http://github.com/markdoc/markdoc) to see how it works.
   {% /callout %}
 
@@ -19,16 +19,23 @@
   Markdoc uses a fully declarative approach to composition and flow control, where other solutions… [Read more](/docs/overview).
 
   ## Next steps
+
   - [Install Markdoc](/docs/getting-started)
   - [Explore the syntax](/docs/syntax)
-  
+
   ## From partial:
 
   {% partial file="partial" /%}
+
+  \`\`\`css
+  .class {
+    color: red;
+  }
+  \`\`\`
   `
 
-  const ast = markdoc.parse(source)
-  const content = markdoc.transform(ast, config)
+  const ast = parse(source)
+  const content = transform(ast, config)
 
   const components = {
     Callout,

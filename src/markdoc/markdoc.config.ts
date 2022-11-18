@@ -1,7 +1,7 @@
 import markdoc, { type Config } from '@markdoc/markdoc'
-import { callout } from './schema/Callout.markdoc'
-import { heading } from './schema/heading.markdoc'
-import { counter } from './schema/Counter.markdoc'
+import { callout } from './callout.markdoc'
+import { heading } from './heading.markdoc'
+import { counter } from './counter.markdoc'
 
 const partial = `
 Using with [Svelte](https://svelte.dev)

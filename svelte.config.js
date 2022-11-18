@@ -10,14 +10,14 @@ const config = {
   kit: {
     adapter: adapter(),
 
-    package: {
-      exports: (file) => file === 'index.ts'
-    },
-
     alias: {
       'svelte-markdoc': 'src/lib',
       $components: 'src/components'
     }
+  },
+
+  package: {
+    exports: (file) => file === 'index.ts'
   }
 }
 

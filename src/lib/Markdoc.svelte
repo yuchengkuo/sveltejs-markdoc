@@ -1,23 +1,35 @@
-<script lang="ts" context="module">
-  export type ComponentsMap = Record<string, Component>
-  export type Component = typeof SvelteComponent
-  import type { SvelteComponent } from 'svelte'
-</script>
-
 <script lang="ts">
-  import type { RenderableTreeNode } from '@markdoc/markdoc'
+  import { isTag } from './utils'
 
-  export let content: RenderableTreeNode
+  import type { RenderableTreeNodes } from '@markdoc/markdoc'
+  import type { ComponentsMap } from './types'
+
+  export let content: RenderableTreeNodes
   export let components: ComponentsMap = {}
+
+  if (
+    !Array.isArray(content) &&
+    isTag(content) &&
+    content.name.at(0)?.match(/[A-Z]/) &&
+    !components[content.name]
+  )
+    console.warn(
+      `${content.name} seems like a Svelte component but not provided in component props.`
+    )
 </script>
 
 {#if content !== null && typeof content === 'object'}
+  <!-- RenderableTreeNodes[] -->
   {#if Array.isArray(content)}
     {#each content as node}
       <svelte:self content={node} {components} />
     {/each}
-  {:else}
+
+    <!-- RenderableTreeNode -->
+  {:else if isTag(content)}
     {@const { name, attributes = {}, children = [] } = content}
+
+    <!-- Svelte components -->
     {#if components[name]}
       {@const component = components[name]}
       {#if children.length === 0}
@@ -33,6 +45,8 @@
           {/each}
         </svelte:component>
       {/if}
+
+      <!-- other tags -->
     {:else if children.length === 0}
       <svelte:element this={name} {...attributes} />
     {:else}
