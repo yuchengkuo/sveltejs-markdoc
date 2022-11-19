@@ -85,16 +85,3 @@ test('render multiple attributes of boolean, number, string', () => {
   expect(screen.getByText('test')).toHaveAttribute('level', '1')
   expect(screen.getByText('test')).toHaveAttribute('id', 'test-id')
 })
-
-test('render multiple attributes of boolean, number, string', () => {
-  const content: RenderableTreeNodes = {
-    $$mdtype: 'Tag',
-    name: 'h1',
-    attributes: { 'data-highlight': true, level: 1, id: 'test-id' },
-    children: ['test']
-  }
-  render(Markdoc, { content })
-  expect(screen.getByText('test')).toHaveAttribute('data-highlight', 'true')
-  expect(screen.getByText('test')).toHaveAttribute('level', '1')
-  expect(screen.getByText('test')).toHaveAttribute('id', 'test-id')
-})
