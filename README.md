@@ -1,6 +1,6 @@
 # sveltejs-markdoc
 
-Render [Markdoc](https://markdoc.io) renderable nodes in [Svelte](https://svelte.dev) projects.
+Render [Markdoc](https://markdoc.io) renderable nodes in [Svelte](https://svelte.dev)/[SvelteKit](https://kit.svelte.dev) projects.
 
 ## Installation
 
@@ -78,6 +78,8 @@ const components = {
 </div>
 
 <style>
-  .callout {...}
+  .callout {
+    ...;
+  }
 </style>
 ```

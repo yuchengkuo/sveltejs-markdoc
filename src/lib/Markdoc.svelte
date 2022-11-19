@@ -37,7 +37,7 @@
       {:else}
         <svelte:component this={component} {...attributes}>
           {#each children as child}
-            {#if typeof child === 'string'}
+            {#if typeof child === 'string' || typeof child === 'number'}
               {child}
             {:else}
               <svelte:self content={child} {components} />
@@ -52,7 +52,7 @@
     {:else}
       <svelte:element this={name} {...attributes}>
         {#each children as child}
-          {#if typeof child === 'string'}
+          {#if typeof child === 'string' || typeof child === 'number'}
             {child}
           {:else}
             <svelte:self content={child} {components} />

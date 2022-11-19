@@ -8,6 +8,15 @@ const config = {
     fs: {
       strict: false
     }
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+
+    setupFiles: ['./setupTest.ts'],
+    coverage: {
+      exclude: ['setupTest.ts']
+    }
   }
 }
 
