@@ -1,7 +1,9 @@
-import type { Schema } from '@markdoc/markdoc'
+import Counter from '$components/Counter.svelte'
 
-export const counter: Schema = {
-  render: 'Counter',
+import type { MarkdocSvelteSchema } from '$lib'
+
+export const counter: MarkdocSvelteSchema = {
+  render: Counter,
   children: ['paragraph', 'tag', 'list'],
   selfClosing: true
 }

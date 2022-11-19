@@ -11,7 +11,7 @@ Install \`markdoc-svelte\` by running \`npm i -D markdoc-svelte\`
 {% counter /%}
 `
 
-export const config: Config = {
+export const config = {
   nodes: {
     heading
   },
@@ -25,4 +25,4 @@ export const config: Config = {
   variables: {
     title: 'What is Markdoc?'
   }
-}
+} as Config

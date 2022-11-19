@@ -10,6 +10,7 @@
   if (
     !Array.isArray(content) &&
     isTag(content) &&
+    typeof content.name === 'string' &&
     content.name.at(0)?.match(/[A-Z]/) &&
     !components[content.name]
   )
@@ -30,8 +31,8 @@
     {@const { name, attributes = {}, children = [] } = content}
 
     <!-- Svelte components -->
-    {#if components[name]}
-      {@const component = components[name]}
+    {#if components[name] || typeof name !== 'string'}
+      {@const component = typeof name === 'function' ? name : components[name]}
       {#if children.length === 0}
         <svelte:component this={component} {...attributes} />
       {:else}

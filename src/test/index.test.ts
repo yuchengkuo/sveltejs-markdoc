@@ -38,7 +38,7 @@ test('render fragment', () => {
   expect(screen.getByText('hello')).toBeInTheDocument()
 })
 
-test('render a external svelte component', () => {
+test('render a external svelte component with props', () => {
   const components = {
     External
   }
@@ -84,4 +84,15 @@ test('render multiple attributes of boolean, number, string', () => {
   expect(screen.getByText('test')).toHaveAttribute('data-highlight', 'true')
   expect(screen.getByText('test')).toHaveAttribute('level', '1')
   expect(screen.getByText('test')).toHaveAttribute('id', 'test-id')
+})
+
+test('render a external svelte component passed through Schema name', () => {
+  //@ts-expect-error Tag name is typed as string but used as Component
+  const content: RenderableTreeNodes = {
+    $$mdtype: 'Tag',
+    name: 'div',
+    children: [{ $$mdtype: 'Tag', name: External, children: [] }]
+  }
+  render(Markdoc, { content })
+  expect(screen.getByText('External')).toBeInTheDocument()
 })

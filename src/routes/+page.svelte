@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { parse, transform } from '@markdoc/markdoc'
+  import markdoc from '@markdoc/markdoc'
   import Callout from '$components/Callout.svelte'
   import Counter from '$components/Counter.svelte'
   import Markdoc from '$lib/Markdoc.svelte'
@@ -34,8 +34,8 @@
   \`\`\`
   `
 
-  const ast = parse(source)
-  const content = transform(ast, config)
+  const ast = markdoc.parse(source)
+  const content = markdoc.transform(ast, config)
 
   const components = {
     Callout,
